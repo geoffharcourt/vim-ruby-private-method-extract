@@ -4,7 +4,7 @@ endfunction!
 
 function! ExtractPrivateMethod()
   let l:statement = @e
-  execute "normal! '<d'>"
+  execute "silent normal! '<d'>"
   
   let l:method_name = substitute(l:statement[0:stridx(l:statement, '=') - 1], '^\s\+', '', '')
   let l:method_body = substitute(l:statement[stridx(l:statement, '=') + 1:strlen(l:statement)], '^\s\+', '', '')
@@ -16,15 +16,15 @@ function! ExtractPrivateMethod()
 endfunction!
 
 function! InsertPrivateMethod(method_name, method_body)
-  execute "normal! g".ClassPrivateSectionLocation()
-  execute "normal! o\<esc>odef ".a:method_name."\<cr>".a:method_body."end\<cr>\<esc>"
+  execute "silent normal! g".ClassPrivateSectionLocation()
+  execute "silent normal! o\<esc>odef ".a:method_name."\<cr>".a:method_body."end\<cr>\<esc>"
 endfunction
 
 function! InsertPrivateSectionInClass()
   if !ClassPrivateSectionLocation()
-    execute "normal! G$"
+    execute "silent normal! G$"
     call search('end', 'b')
-    execute "normal! O\<esc>O\<esc>oprivate\<esc>=="
+    execute "silent normal! O\<esc>O\<esc>oprivate\<esc>=="
   endif
 endfunction
 
@@ -33,5 +33,5 @@ function! TrimExtraWhiteSpace()
     execute "%s/\\n\\{3,}/\\r\\r/g"
   endif
 
-  execute "normal! gg=G"
+  execute "silent normal! gg=G"
 endfunction
