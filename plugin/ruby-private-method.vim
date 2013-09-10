@@ -13,6 +13,8 @@ function! ExtractPrivateMethod()
   call InsertPrivateMethod(l:method_name, l:method_body)
 
   call TrimExtraWhiteSpace()
+
+  execute "silent normal! '<"
 endfunction!
 
 function! InsertPrivateMethod(method_name, method_body)
