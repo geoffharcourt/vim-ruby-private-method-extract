@@ -33,7 +33,7 @@ end
 
 After highlighting the first line of ````too_long_method```` and calling ````ExtractPrivateMethod()````, the class looks like this:
 
-```
+```ruby
 class MyClass
   
   def too_long_method
